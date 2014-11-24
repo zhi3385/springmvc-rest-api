@@ -1,0 +1,97 @@
+AddressBook RESTful API Reference 
+
+1. List/Query Contacts
+2. Get A Contact
+3. Add/Modily A Contact
+4. Delete A contact
+
+1.List/Query Contacts
+Resource URL 	get http://domain.name/contacts/list
+Remark 	List contacts, if there is no parameter provided, it list all the contacts
+Parameters 	[optional] state：filter by state
+[optional] areacode: filter by phone number area code
+[optional] contacteddatefrom：last contacted date start date
+[optional] contacteddateto：last contacted date end date
+Return result 	contact list
+Fields 	id: contact id
+firstname: first name
+lastname: last name
+address: address
+email: email
+phone: phone number
+lastcontacteddate: last contacted date
+sample request 	get http://domain.name/contacts/list?state=ma&areacode=617
+sample result 	[{
+    "id":1,
+    "firstName":"Jack",
+    "lastName":"Tom",
+    "address":"20 walnut st, boston, ma 02210",
+    "email":"jack.tom@yahoo.com",
+    "phone":"617-239-1290",
+    "lastcontacteddate": "10/01/2009"
+
+},
+{
+    "id":2,
+    "firstName":"John",
+    "lastName":"Tom",
+    "Address":"21 walnut st, boston, ma 02210",
+    "email":"john.tom@yahoo.com",
+    "phone":"617-239-1210"
+}]
+
+2.Get A Contact
+Resource URL 	get http://domain.name/contacts/get
+Remark 	get a contact
+Parameters 	[required] id：contact id
+Return result 	contact details
+Fields 	id: contact id
+firstname: first name
+lastname: last name
+address: address
+email: email
+phone: phone number
+lastcontacteddate: last contacted date
+sample request 	get http://domain.name/contacts/get?id=1
+sample result 	{
+    "id":1,
+    "firstName":"Jack",
+    "lastName":"Tom",
+    "address":"20 walnut st, boston, ma 02210",
+    "email":"jack.tom@yahoo.com",
+    "phone":"617-239-1290"
+}
+
+3.Add/Modify A Contact
+Resource URL 	put http://domain.name/contacts/put
+Remark 	add a contact
+Parameters 	[optional] id：contact id
+[required] firstname: first name
+[required] lastname: last name
+[required] address: address
+[required] email: email
+[required] phone: phone number
+[optional] lastcontacteddate: last contacted date
+Return result 	contact id
+Fields 	id: contact id
+sample request 	put http://domain.name/contacts/put
+
+{
+    "firstName":"Jack",
+    "lastName":"Tom",
+    "address":"20 walnut st, boston, ma 02210",
+    "email":"jack.tom@yahoo.com",
+    "phone":"617-239-1290"
+}
+sample result 	{id:1}
+
+4.Delete A Contact
+Resource URL 	delete http://domain.name/contacts/delete
+Remark 	delete a contact
+Parameters 	[required] id：contact id
+Return result 	deleted item id
+Fields 	id: deleted contact id
+sample request 	delete http://domain.name/contacts/delete?id=1
+sample result 	{"id":1}
+
+
